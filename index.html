@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Kitchen - Bill Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="business-header">
+            <div class="business-info">
+                <h1 class="business-name">Village Kitchen</h1>
+                <p class="tagline">Love at First Bite</p>
+                <p class="phone">📞 +91 6305376320</p>
+            </div>
+            <div class="logo">
+                <div class="logo-icon">🍽️</div>
+            </div>
+        </header>
 
+        <div class="bill-generator">
+            <h2>Generate Invoice</h2>
+            
+            <div class="customer-section">
+                <h3>Customer Details</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="customerName">Customer Name</label>
+                        <input type="text" id="customerName" placeholder="Enter customer name">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone Number</label>
+                        <input type="tel" id="customerPhone" placeholder="Enter phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="invoiceDate">Date</label>
+                        <input type="date" id="invoiceDate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="deliveryAddress">Delivery Address</label>
+                        <textarea id="deliveryAddress" placeholder="Enter complete delivery address" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="items-section">
+                <h3>Order Items</h3>
+                <div class="add-item-section">
+                    <div class="form-row">
+                        <div class="form-group flex-2">
+                            <label for="itemSelect">Select Item</label>
+                            <select id="itemSelect">
+                                <option value="">Choose an item...</option>
+                                <optgroup label="🍲 Pre-Mix Specials">
+                                    <option value="Biryani Pre-Mix|150">Biryani Pre-Mix - ₹150</option>
+                                    <option value="Hot Pongal Pre-Mix (Rice)|150">Hot Pongal Pre-Mix (Rice) - ₹150</option>
+                                    <option value="Hot Godhuma Ravva Pongal|150">Hot Godhuma Ravva Pongal - ₹150</option>
+                                    <option value="Hot Millets Pongal Pre-Mix|150">Hot Millets Pongal Pre-Mix - ₹150</option>
+                                    <option value="All Types Upma Pre-Mix|99">All Types Upma Pre-Mix - ₹99</option>
+                                    <option value="Samya Payasam Pre-Mix|99">Samya Payasam Pre-Mix - ₹99</option>
+                                    <option value="Millet Payasam Pre-Mix|175">Millet Payasam Pre-Mix - ₹175</option>
+                                    <option value="Sweet Pongal Pre-Mix (Rice)|175">Sweet Pongal Pre-Mix (Rice) - ₹175</option>
+                                    <option value="Sweet Godhuma Ravva Pongal|175">Sweet Godhuma Ravva Pongal - ₹175</option>
+                                </optgroup>
+                                <optgroup label="🍬 Traditional Sweets">
+                                    <option value="Peanut Chikki|149">Peanut Chikki - ₹149</option>
+                                    <option value="Peanut & Nuts Powder Chikki|149">Peanut & Nuts Powder Chikki - ₹149</option>
+                                    <option value="Jonna Laddu (Jaggery)|399">Jonna Laddu (Jaggery) - ₹399</option>
+                                    <option value="Jonna Laddu (Sugar)|350">Jonna Laddu (Sugar) - ₹350</option>
+                                    <option value="Ragi Laddu (Jaggery)|399">Ragi Laddu (Jaggery) - ₹399</option>
+                                    <option value="Ragi Laddu (Sugar)|350">Ragi Laddu (Sugar) - ₹350</option>
+                                    <option value="Dry Fruits Laddu (Dates)|570">Dry Fruits Laddu (Dates) - ₹570</option>
+                                    <option value="Dry Fruits Laddu (Jaggery)|400">Dry Fruits Laddu (Jaggery) - ₹400</option>
+                                    <option value="Dry Fruits Laddu (Sugar)|350">Dry Fruits Laddu (Sugar) - ₹350</option>
+                                    <option value="Oats Dry Fruits Laddu (Jaggery)|450">Oats Dry Fruits Laddu (Jaggery) - ₹450</option>
+                                    <option value="Oats Peanuts Laddu (Jaggery)|399">Oats Peanuts Laddu (Jaggery) - ₹399</option>
+                                    <option value="Flax Seeds Peanuts Laddu (Jaggery)|399">Flax Seeds Peanuts Laddu (Jaggery) - ₹399</option>
+                                    <option value="Flax Seeds Peanuts Laddu (Sugar)|349">Flax Seeds Peanuts Laddu (Sugar) - ₹349</option>
+                                    <option value="Flattened Rice (Poha) Laddu (Jaggery)|349">Flattened Rice (Poha) Laddu (Jaggery) - ₹349</option>
+                                </optgroup>
+                                <optgroup label="🌶️ Karam Varieties">
+                                    <option value="Curry Leaves Karam|129">Curry Leaves Karam - ₹129</option>
+                                    <option value="Warm Karam|129">Warm Karam - ₹129</option>
+                                    <option value="Flax Seeds Karam|119">Flax Seeds Karam - ₹119</option>
+                                    <option value="Peanuts Karam|149">Peanuts Karam - ₹149</option>
+                                    <option value="Coriander Seeds Karam|129">Coriander Seeds Karam - ₹129</option>
+                                    <option value="Sesame Seeds Karam|149">Sesame Seeds Karam - ₹149</option>
+                                    <option value="Flax Seeds & Peanuts Karam|149">Flax Seeds & Peanuts Karam - ₹149</option>
+                                    <option value="All Mix Type Karam|149">All Mix Type Karam - ₹149</option>
+                                </optgroup>
+                                <optgroup label="🥄 Traditional Pickles">
+                                    <option value="Tomato Pickle|300">Tomato Pickle - ₹300</option>
+                                    <option value="Mango Pickle|350">Mango Pickle - ₹350</option>
+                                    <option value="Munnakayi Pickle|300">Munnakayi Pickle - ₹300</option>
+                                    <option value="Gongura Pickle|300">Gongura Pickle - ₹300</option>
+                                    <option value="Kothimeera Pickle|300">Kothimeera Pickle - ₹300</option>
+                                    <option value="Lemon Pickle|300">Lemon Pickle - ₹300</option>
+                                    <option value="Green Mirchi Pickle|300">Green Mirchi Pickle - ₹300</option>
+                                    <option value="Pandu Mirchi Pickle|300">Pandu Mirchi Pickle - ₹300</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" id="quantity" min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <button type="button" id="addItemBtn" class="add-btn">Add Item</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="items-list">
+                    <table id="itemsTable">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="delivery-section">
+                <h3>Delivery Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="deliveryCharges">Delivery Charges</label>
+                        <input type="number" id="deliveryCharges" min="0" value="0" placeholder="Enter delivery charges">
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="freeDelivery"> Free Delivery
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-section">
+                <div class="summary-box">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Charges:</span>
+                        <span id="deliveryTotal">Rs.0</span>
+                    </div>
+                    <div class="summary-row total-row">
+                        <span>Final Total:</span>
+                        <span id="finalTotal">₹0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button id="generatePdfBtn" class="pdf-btn">📄 Download PDF Invoice</button>
+                <button id="clearAllBtn" class="clear-btn">🗑️ Clear All</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
